@@ -9,6 +9,14 @@ app.get("/", function(req,res){
     res.render("index");
 }); 
 
+app.get("/universities", function(req,res){
+    res.render("universities");
+});
+
+app.get("/courses", function(req,res){
+    res.render("courses");
+});
+
 app.listen(3000, function(){
     console.log("Server Online");
 });

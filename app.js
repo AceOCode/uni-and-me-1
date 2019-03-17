@@ -2,8 +2,10 @@ var mongoose = require("mongoose");
 var express = require("express");
 var app = express();
 
-var University = require(./models/university.js);
-var Course = require(./models/course.js);
+var University = require("./models/university.js");
+var Course = require("./models/course.js");
+
+var seed = require("./seed.js");
 
 mongoose.connect("mongodb://localhost:27017/uni-and-me-1", {useNewUrlParser: true});
 app.set("view engine", "ejs");

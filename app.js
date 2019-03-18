@@ -1,3 +1,4 @@
+var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var express = require("express");
 var app = express();
@@ -9,6 +10,7 @@ var Course = require("./models/course.js");
 
 mongoose.connect("mongodb://localhost:27017/uni-and-me-1", {useNewUrlParser: true});
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", function(req,res){
     res.render("index");
@@ -25,8 +27,12 @@ app.get("/universities", function(req,res){
 
 //CREATE - UNI
 app.post("/universities", function(req,res){
-
-})
+    var name = req.body.name
+    var country = req.body.country
+    console.log(country);
+    //We need a function to add these to the DB
+    res.redirect("/universities");
+});
 
 //NEW - UNI
 app.get("/universities/new", function(req,res){

@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>New University</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="">
-    <script src=""></script>
-</head>
-<body>
-    This is a page for adding new universities to our database.
+<% include ../partials/header.ejs %>
+
+This is a page for adding new universities to our database.
     <form action="/universities" method="POST">
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="country" placeholder="country">
+        <input type="text" name="uni[name]" placeholder="name">
+        <input list="countries" name="uni[country]">
+            <datalist id="countries">
+                <option value="USA">
+                <option value="UK">
+                <option value="Turkey">
+            </datalist>
         <button>Submit</button>
     </form>
-</body>
-</html>
+
+<% include ../partials/footer.ejs %>

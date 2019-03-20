@@ -1,0 +1,17 @@
+<% include ../partials/header.ejs %>
+
+<form action="/courses" method="POST">
+    <input type="text" name="course[name]" placeholder="Course Title">
+    <input type="text" name="course[level]" placeholder="e.g. BSc MSc Phd">
+    <input list="unis" name="course[university]">
+        <datalist id="unis">
+        <% universities.forEach(function(unis){ %>
+            <option value="<%= unis.name %>">
+        <% }); %>
+        </datalist>
+    <button>Submit</button>
+</form>
+
+<p><strong>Note:</strong>Do not add a uni value that is not already included in the list. This must be done through the new uni page.</p>
+
+<% include ../partials/footer.ejs %>

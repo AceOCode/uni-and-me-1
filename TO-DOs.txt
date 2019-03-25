@@ -1,0 +1,13 @@
+1) User Models
+    - Admin User - Add/Change/Destroy course and uni details
+    - Guest User - Add universities and courses to a comparison list
+        - Email Authenrication
+        - Email Newsletter
+2) User Auth
+3) Edit Function
+4) Destroy Function
+5) Google Map
+6) Articles and News Page
+7) Front End Additions
+8) Google Analytics Research
+9) HTTPS encryption

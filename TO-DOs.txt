@@ -1,9 +1,18 @@
 1) User Models
     - Admin User - Add/Change/Destroy course and uni details
+        +- Add isAdmin attribute to user scheme
+        +- Add admin password to user creation
+        - Add middleware to the create and post routes for uni and course
+
+        - (Optional) Email verification of Admins (2 Factor Admin Authentication)
+            - Add node gmail capability
+            - Add email sending upon admin registry with correct password
+            - Add verification method with email
+
     - Guest User - Add universities and courses to a comparison list
         - Email Authenrication
         - Email Newsletter
-2) User Auth
++2) User Auth
 3) Edit Function
 4) Destroy Function
 5) Google Map

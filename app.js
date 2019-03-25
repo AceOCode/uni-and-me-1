@@ -33,8 +33,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser()); 
 
+//==================================================================
+//Routes Routes Routes Routes Routes Routes Routes Routes Routes
+//==================================================================
+
 app.get("/", function(req,res){
-    res.render("index");
+    res.render("index", {currentUser: req.user});
 }); 
 
 //==================================================================
@@ -137,14 +141,21 @@ app.get("/register", function(req,res){
 });     
 
 app.post("/register", function(req,res){
-    User.register(new User({username: req.body.username}), req.body.password, function(err,user){
+    var newUser = new User({username: req.body.username});
+    //Change this to an environmental variable
+    if(req.body.adminpassword === "IronMan>Cap"){
+        //2-Step Auth will be added here.
+        newUser.isAdmin = true;
+    }
+    User.register(newUser, req.body.password, function(err,user){
         if(err){
             console.log(err)
             return res.render("user/register");
+        }else{
+            passport.authenticate("local")(req, res, function(){
+                res.redirect("/");
+            });
         }
-        passport.authenticate("local")(req, res, function(){
-            res.redirect("/");
-        });
     });
 });
 

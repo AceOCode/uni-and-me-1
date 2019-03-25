@@ -3,7 +3,8 @@ var mongoose = require("mongoose");
 
 var UserSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    isAdmin: {type: Boolean, default: false}
 });
 
 //Adds passport functionality to the User Schema.

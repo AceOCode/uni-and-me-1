@@ -54,12 +54,12 @@ app.get("/universities", function(req,res){
 });
 
 //NEW - UNI
-app.get("/universities/new", isLoggedIn, function(req,res){
-    res.render("university/new_uni"); 
+app.get("/universities/new", checkAdmin, function(req,res){
+    res.render("university/new_uni");
 });
 
 //CREATE - UNI
-app.post("/universities", isLoggedIn, function(req,res){
+app.post("/universities", checkAdmin, function(req,res){
     University.create(req.body.uni, function(err, newlyCreated){
         if(err){console.log(err);
         }else{res.redirect("/universities")} 
@@ -92,7 +92,7 @@ app.get("/universities/:id/courses/:course_id", function(req,res){
 });
 
 //NEW -COURSE
-app.get("/courses/new", isLoggedIn, function(req,res){
+app.get("/courses/new", checkAdmin, function(req,res){
     University.find({}, function(err,universities){
         if(err){console.log(err);
         }else{res.render("course/new_course", {universities: universities})}
@@ -101,7 +101,7 @@ app.get("/courses/new", isLoggedIn, function(req,res){
 
 //CREATE - COURSE
 //This updates the DB to have new courses for the respective university.
-app.post("/courses", isLoggedIn, function(req,res){
+app.post("/courses", checkAdmin, function(req,res){
     University.findOne({name: req.body.course.university}, function(err,foundUniversity){
         if(err){console.log(err);
         }else{
@@ -175,11 +175,22 @@ function isLoggedIn(req, res, next){
         return next();
     }else{res.redirect("/login")}
 }
-//==================================================================
-// AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH AUTH
-//==================================================================
 
-
+function checkAdmin(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.isAdmin === true){
+            console.log("Admin Logged In");
+            return next();
+        }else{
+            console.log("Not an Admin");
+            res.redirect("back")
+        }
+    }else{
+        console.log("Not Logged In");
+        res.redirect("back")
+    }
+        
+}
 
 app.listen(3000, function(){
     console.log("Server Online");

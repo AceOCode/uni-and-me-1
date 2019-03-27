@@ -60,6 +60,8 @@ app.get("/universities/new", checkAdmin, function(req,res){
 
 //CREATE - UNI
 app.post("/universities", checkAdmin, function(req,res){
+    req.body.uni.author = req.user.username
+    console.log(req.body.uni);
     University.create(req.body.uni, function(err, newlyCreated){
         if(err){console.log(err);
         }else{res.redirect("/universities")} 
@@ -105,7 +107,7 @@ app.post("/courses", checkAdmin, function(req,res){
     University.findOne({name: req.body.course.university}, function(err,foundUniversity){
         if(err){console.log(err);
         }else{
-            var course = {name: req.body.course.name, level: req.body.course.level, university: foundUniversity}
+            var course = {name: req.body.course.name, level: req.body.course.level, university: foundUniversity, aythor: req.user.username}
             Course.create(course, function(err, newCourse){
                 if(err){console.log(err);
                 }else{
@@ -179,14 +181,11 @@ function isLoggedIn(req, res, next){
 function checkAdmin(req, res, next){
     if(req.isAuthenticated()){
         if(req.user.isAdmin === true){
-            console.log("Admin Logged In");
             return next();
         }else{
-            console.log("Not an Admin");
             res.redirect("back")
         }
     }else{
-        console.log("Not Logged In");
         res.redirect("back")
     }
         

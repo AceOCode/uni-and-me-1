@@ -8,7 +8,8 @@ var universitySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: "Course"
         }
-    ]
+    ],
+    author: String
 });
 
 var University = mongoose.model("University", universitySchema);

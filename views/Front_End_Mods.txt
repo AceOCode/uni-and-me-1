@@ -1,0 +1,12 @@
+index_1.ejs
+    - change-1 - Add dynamic counter data from the DB
+     - Universities
+     - Courses
+     - Users
+     - ???
+    - change-2 - Add relevant icons for each counter
+
+header_1.ejs
+    - change-1 - Add links to the user tab
+    - change-2 - Add a user icon from udemy quoted source
+    - change-3 - Add an icon to the title of the website (In the Tab)

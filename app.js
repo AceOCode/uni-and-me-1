@@ -20,6 +20,9 @@ app.set("view engine", "ejs");
 // This lets us use body parser which is used for reading forms out of request files.
 app.use(bodyParser.urlencoded({extended:true}));
 
+//Adding static directory for media
+app.use(express.static( __dirname + "/public"));
+
 app.use(require("express-session")({
     secret:"The Secret",
     resave: false,
@@ -186,7 +189,7 @@ function checkAdmin(req, res, next){
             res.redirect("back")
         }
     }else{
-        res.redirect("back")
+        res.redirect("/login")
     }
         
 }

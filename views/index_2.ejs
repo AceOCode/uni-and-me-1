@@ -1,0 +1,16 @@
+<% include partials/header.ejs %>
+
+    This is the landing page for Uni and Me.
+    <a href="/courses">Courses</a>
+    <a href="/universities">Universities</a>
+    <a href="/login">Log In</a>
+    <a href="/register">Sign Up</a>
+    <a href="/logout">Sign Out</a>
+
+    <% if(currentUser && currentUser.isAdmin){ %>
+        <h1>You're logged in as an <strong>Admin</strong></h1>
+    <% } %> 
+
+    
+
+<% include partials/footer.ejs %>
